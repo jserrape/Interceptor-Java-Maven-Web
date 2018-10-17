@@ -10,5 +10,10 @@ package com.mycompany.interceptor;
  * @author Juan Carlos
  */
 public class Calcular {
-    
+
+    private final double intervalo = 5;
+
+    public double ejecutar(Object o) {
+        return ((double) o) * 3600 / intervalo;
+    }
 }

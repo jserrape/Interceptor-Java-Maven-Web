@@ -9,6 +9,6 @@ package com.mycompany.interceptor;
  *
  * @author Juan Carlos
  */
-public class Filtro {
-    
+public interface Filtro {
+    public double ejecutar(Object o);
 }

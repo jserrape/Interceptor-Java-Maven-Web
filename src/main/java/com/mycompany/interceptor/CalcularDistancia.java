@@ -9,6 +9,17 @@ package com.mycompany.interceptor;
  *
  * @author Juan Carlos
  */
-public class CalcularDistancia {
-    
+public class CalcularDistancia implements Filtro {
+
+    private final double radio = 3;
+    private double revolAnt = 0.0;
+
+    @Override
+    public double ejecutar(Object o) {
+        double revoluciones = (double) o;
+        double distancia = ((revoluciones - this.radio) * 2 * this.radio * 3.1416);
+        this.revolAnt = revoluciones;
+        return distancia;
+    }
+
 }
