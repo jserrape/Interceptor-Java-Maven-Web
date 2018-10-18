@@ -7,8 +7,8 @@ package com.mycompany.interceptor;
 
 /**
  *
- * @author Juan Carlos
+ * @author juanca
  */
-public class FiltroChoque {
+public class Controlador {
     
 }

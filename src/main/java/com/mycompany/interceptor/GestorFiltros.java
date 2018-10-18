@@ -10,5 +10,19 @@ package com.mycompany.interceptor;
  * @author Juan Carlos
  */
 public class GestorFiltros {
+
+    private CadenaFiltros cadena;
+    private Interfaz objetivo;
     
+    public GestorFiltros(Interfaz obj){
+        this.objetivo=obj;
+        this.cadena=new CadenaFiltros(this.objetivo);
+    }
+    
+    public void setFiltro(Calcular cal){
+    }
+    
+    public void envioPeticion(double vueltas){
+        cadena.ejecutar(vueltas);
+    }
 }

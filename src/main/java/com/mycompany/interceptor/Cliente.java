@@ -10,5 +10,15 @@ package com.mycompany.interceptor;
  * @author Juan Carlos
  */
 public class Cliente {
+    private GestorFiltros gestor;
     
+    public Cliente(){}
+    
+    public void setGestorFiltros(GestorFiltros g){
+        this.gestor=g;
+    }
+    
+    public void enviarPetición(double vueltas){
+        this.gestor.envioPeticion(vueltas);
+    }
 }
