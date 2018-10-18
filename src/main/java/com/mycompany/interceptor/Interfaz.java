@@ -9,8 +9,6 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,9 +22,14 @@ public class Interfaz {
         this.URL = "http://localhost:8080/interceptor/faces/home.xhtml";
     }
 
-    public void ejecutar(double peticion) {
-        /*
-        NO sé que hacer aquí
-        */
+    public void ejecutar(double peticion) throws URISyntaxException, IOException {
+        if (Desktop.isDesktopSupported()) {
+            // Windows
+            Desktop.getDesktop().browse(new URI(URL));
+        } else {
+            // Ubuntu
+            Runtime runtime = Runtime.getRuntime();
+            runtime.exec("/usr/bin/firefox -new-window " + URL);
+        }
     }
 }

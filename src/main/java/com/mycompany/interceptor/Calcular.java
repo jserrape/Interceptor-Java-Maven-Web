@@ -9,10 +9,11 @@ package com.mycompany.interceptor;
  *
  * @author Juan Carlos
  */
-public class Calcular {
+public class Calcular implements Filtro{
 
     private final double intervalo = 5;
 
+    @Override
     public double ejecutar(Object o) {
         return ((double) o) * 3600 / intervalo;
     }

@@ -20,6 +20,7 @@ public class GestorFiltros {
     }
     
     public void setFiltro(Calcular cal){
+        this.cadena.addFiltro(cal);
     }
     
     public void envioPeticion(double vueltas){

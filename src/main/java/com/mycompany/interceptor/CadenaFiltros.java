@@ -5,7 +5,11 @@
  */
 package com.mycompany.interceptor;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,7 +33,11 @@ public class CadenaFiltros {
         for (Filtro filtro : filtros) {
             System.out.println("Nueva velocidad(m/s) " + filtro.ejecutar(peticion));
         }
-        objetivo.ejecutar(peticion);
+        try {
+            objetivo.ejecutar(peticion);
+        } catch (URISyntaxException | IOException ex) {
+            Logger.getLogger(CadenaFiltros.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void setObjetivo(Interfaz obj) {
