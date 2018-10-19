@@ -15,11 +15,13 @@
                 id="buttonApagarEncender"
                 style="color:#{controlador.colorEncender}"
                 value="#{controlador.textoOnOf}"
+                actionListener="#{controlador.actionEncender}"
                 />
             <h:commandButton 
                 id="buttonAcelerar"
                 value="#{controlador.textoAcelerar}"
                 disabled="#{controlador.botonHabilitado}"
+                actionListener="#{controlador.actionAcelerar}"
                 />
         </h:form>
     </h:body>

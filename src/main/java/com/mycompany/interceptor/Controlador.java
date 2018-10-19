@@ -9,16 +9,13 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.event.ActionEvent;
 
 @ManagedBean(name = "controlador", eager = true)
 @RequestScoped
 public class Controlador implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    private static final String APAGADO = "0";
-    private static final String ENCENDIDO = "1";
-    private static final String ACELERANDO = "2";
 
     private static final String TEXTO_APAGADO = "Apagado";
     private static final String TEXTO_ENCENDIDO = "Endendido";
@@ -33,8 +30,7 @@ public class Controlador implements Serializable {
     private static final String COLOR_VERDE = "green";
     private static final String COLOR_AZUL = "blue";
 
-    private static final boolean BOTON_ACTIVADO = true;
-    private static final boolean BOTON_APAGADO = false;
+    private int estado = 0;
 
     @ManagedProperty(value = "#{titulo}")
     private String titulo;
@@ -47,7 +43,7 @@ public class Controlador implements Serializable {
 
     @ManagedProperty(value = "#{colorEncender}")
     private String colorEncender;
-    
+
     @ManagedProperty(value = "#{textoAcelerar}")
     private String textoAcelerar;
 
@@ -92,8 +88,8 @@ public class Controlador implements Serializable {
             this.textoOnOf = m;
         }
     }
-    
-        public String getColorEncender() {
+
+    public String getColorEncender() {
         return this.colorEncender;
     }
 
@@ -104,7 +100,7 @@ public class Controlador implements Serializable {
             this.colorEncender = m;
         }
     }
-    
+
     public String getTextoAcelerar() {
         return this.textoAcelerar;
     }
@@ -123,5 +119,43 @@ public class Controlador implements Serializable {
 
     public void setBotonHabilitado(boolean m) {
         this.botonHabilitado = !m;
+    }
+
+    public void actionEncender(ActionEvent e) {
+        System.out.println("Action" + this.estado);
+        if (this.estado == 0) {
+            System.out.println("Encender");
+            encender();
+        } else {
+            System.out.println("Apagar");
+            apagar();
+        }
+    }
+
+    public void actionAcelerar(ActionEvent e) {
+        acelerar();
+    }
+
+    private void encender() {
+        setBotonHabilitado(true);
+        setTitulo(TEXTO_ENCENDIDO);
+        setTituloColor(COLOR_AZUL);
+        setTextoOnOf(TEXTO_APAGAR);
+        setColorEncender(COLOR_AZUL);
+        System.out.println("Estado:" + this.estado);
+        this.estado = 1;
+        System.out.println("Estado:" + this.estado);
+    }
+
+    private void apagar() {
+        setBotonHabilitado(false);
+        setTitulo(TEXTO_APAGADO);
+        setTituloColor(COLOR_ROJO);
+        setTextoOnOf(TEXTO_ENCENDER);
+        setColorEncender(COLOR_ROJO);
+        this.estado = 0;
+    }
+
+    private void acelerar() {
     }
 }
