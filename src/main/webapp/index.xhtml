@@ -6,20 +6,20 @@
         <title>Práctica 1: Interceptor</title>
     </h:head>
     <h:body>
-        <h2 style="color:red">#{holaMundo.mensaje}</h2>
+        <h2 style="color:#{controlador.tituloColor}">#{controlador.titulo}</h2>
 
-        
         <hr />
-
+        
         <h:form>
             <h:commandButton 
                 id="buttonApagarEncender"
-                value="----"
-                style="color:green"
+                style="color:#{controlador.colorEncender}"
+                value="#{controlador.textoOnOf}"
                 />
             <h:commandButton 
                 id="buttonAcelerar"
-                value="Acelerar"
+                value="#{controlador.textoAcelerar}"
+                disabled="#{controlador.botonHabilitado}"
                 />
         </h:form>
     </h:body>
