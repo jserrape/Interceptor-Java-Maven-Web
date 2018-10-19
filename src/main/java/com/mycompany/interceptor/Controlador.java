@@ -6,26 +6,31 @@
 package com.mycompany.interceptor;
 
 import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
-/**
- *
- * @author juanca
- */
-public class Controlador implements Serializable{
-    
-    private static final long serialVersionUID= 1L;
-    
-    private static final int APAGADO =0;
-    private static final int ENCENDIDO =1;
-    private static final int ACELERANDO =2;
-    
-    private static final String TEXTO_APAGADO ="Apagado";
-    private static final String TEXTO_ENCENDIDO ="Endendido";
-    private static final String TEXTO_ACELERANDO ="Acelerando";
-    private static final String TEXTO_ENCENDER ="Endender";
-    private static final String TEXTO_APAGAR ="Apagar";
-    
-    private static final String COLOR_ROJO ="red";
-    private static final String COLOR_VERDE ="green";
-    private static final String COLOR_AZUL ="blue";
+@ManagedBean(name = "holaMundo", eager = true)
+@RequestScoped
+public class Controlador implements Serializable {
+
+    @ManagedProperty(value = "#{mensaje}")
+    private Mensaje mensajeBean;
+    private String mensaje = "Nada aun!";
+
+    public Controlador() {
+        System.out.println("Hola mundo ha comenzado!");
+        System.out.println(mensaje);
+    }
+
+    public String getMensaje() {
+        if (mensajeBean != null) {
+            mensaje = mensajeBean.getMensaje();
+        }
+        return "Holaaaa";
+    }
+
+    public void setMensajeBean(Mensaje m) {
+        this.mensajeBean = m;
+    }
 }
