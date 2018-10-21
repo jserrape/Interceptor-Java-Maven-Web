@@ -8,11 +8,11 @@ package com.mycompany.interceptor;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
 @ManagedBean(name = "controlador", eager = true)
-@RequestScoped
+@SessionScoped
 public class Controlador implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +27,6 @@ public class Controlador implements Serializable {
     private static final String TEXTO_ACELERAR = "Acelerar";
 
     private static final String COLOR_ROJO = "red";
-    private static final String COLOR_VERDE = "green";
     private static final String COLOR_AZUL = "blue";
 
     private int estado = 0;
@@ -54,12 +53,12 @@ public class Controlador implements Serializable {
     }
 
     public String getTitulo() {
-        return titulo;
+        return this.titulo;
     }
 
     public void setTitulo(String m) {
         if (this.titulo == null) {
-            this.titulo = TEXTO_APAGADO;
+            this.titulo = this.TEXTO_APAGADO;
         } else {
             this.titulo = m;
         }
@@ -71,7 +70,7 @@ public class Controlador implements Serializable {
 
     public void setTituloColor(String m) {
         if (this.tituloColor == null) {
-            this.tituloColor = COLOR_ROJO;
+            this.tituloColor = this.COLOR_ROJO;
         } else {
             this.tituloColor = m;
         }
@@ -83,7 +82,7 @@ public class Controlador implements Serializable {
 
     public void setTextoOnOf(String m) {
         if (this.textoOnOf == null) {
-            this.textoOnOf = TEXTO_ENCENDER;
+            this.textoOnOf = this.TEXTO_ENCENDER;
         } else {
             this.textoOnOf = m;
         }
@@ -95,7 +94,7 @@ public class Controlador implements Serializable {
 
     public void setColorEncender(String m) {
         if (this.colorEncender == null) {
-            this.colorEncender = COLOR_ROJO;
+            this.colorEncender = this.COLOR_ROJO;
         } else {
             this.colorEncender = m;
         }
@@ -122,12 +121,9 @@ public class Controlador implements Serializable {
     }
 
     public void actionEncender(ActionEvent e) {
-        System.out.println("Action" + this.estado);
         if (this.estado == 0) {
-            System.out.println("Encender");
             encender();
         } else {
-            System.out.println("Apagar");
             apagar();
         }
     }
@@ -138,24 +134,26 @@ public class Controlador implements Serializable {
 
     private void encender() {
         setBotonHabilitado(true);
-        setTitulo(TEXTO_ENCENDIDO);
-        setTituloColor(COLOR_AZUL);
-        setTextoOnOf(TEXTO_APAGAR);
-        setColorEncender(COLOR_AZUL);
-        System.out.println("Estado:" + this.estado);
+        setTitulo(this.TEXTO_ENCENDIDO);
+        setTituloColor(this.COLOR_AZUL);
+        setTextoOnOf(this.TEXTO_APAGAR);
+        setColorEncender(this.COLOR_AZUL);
         this.estado = 1;
-        System.out.println("Estado:" + this.estado);
     }
 
     private void apagar() {
         setBotonHabilitado(false);
-        setTitulo(TEXTO_APAGADO);
-        setTituloColor(COLOR_ROJO);
-        setTextoOnOf(TEXTO_ENCENDER);
-        setColorEncender(COLOR_ROJO);
+        setTitulo(this.TEXTO_APAGADO);
+        setTituloColor(this.COLOR_ROJO);
+        setTextoOnOf(this.TEXTO_ENCENDER);
+        setColorEncender(this.COLOR_ROJO);
         this.estado = 0;
     }
 
     private void acelerar() {
+        if(this.estado==1){
+            setTitulo(this.TEXTO_ACELERANDO);
+            this.estado=2;
+        }
     }
 }
