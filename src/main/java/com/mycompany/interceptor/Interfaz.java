@@ -19,7 +19,7 @@ public class Interfaz {
     private final String URL;
 
     public Interfaz() {
-        this.URL = "http://localhost:8080/interceptor/faces/home.xhtml";
+        this.URL = "http://localhost:8080/interceptor";
     }
 
     public void ejecutar(double peticion) throws URISyntaxException, IOException {
